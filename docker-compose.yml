@@ -1,0 +1,15 @@
+services:
+  traefik:
+    image: traefik:v3.1
+  php:
+    environment:
+      PHP_FPM_POOL_NAME: "laravel_web"
+    depends_on:
+      - traefik
+  reverb:
+    entrypoint: ''
+    command: ["php", "/var/www/html/artisan", "--port=8000", "reverb:start"]
+    healthcheck:
+      disable: true
+    depends_on:
+      - php

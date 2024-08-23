@@ -1,0 +1,32 @@
+services:
+  php:
+    build:
+      target: ci
+      dockerfile: Dockerfile.php
+    networks:
+      - ci
+    volumes:
+      - .:/var/www/html/
+  node:
+    build:
+      target: ci
+      dockerfile: Dockerfile.node
+    volumes:
+      - .:/usr/src/app/
+    networks:
+      - ci
+    working_dir: /usr/src/app/
+  mailpit:
+    image: axllent/mailpit
+    networks:
+      - ci
+  reverb:
+    build:
+      target: ci
+      dockerfile: Dockerfile.php
+    volumes:
+      - .:/var/www/html/
+    networks:
+      - ci
+networks:
+  ci:
