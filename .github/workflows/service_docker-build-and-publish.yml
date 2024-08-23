@@ -3,7 +3,7 @@ on:
     inputs:
       platforms:
         type: string
-        default: 'linux/amd64'
+        default: 'linux/arm64'
       docker-tags:
         required: true
         type: string
